@@ -24,7 +24,7 @@ dependencies:
 - wai
 - warp
 - scotty
-- text
+- text >= 1.2.4.0
 - bytestring
 - wai-middleware-static
 - wai-extra
