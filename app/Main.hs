@@ -1,5 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+{-
+https://codereview.stackexchange.com/questions/188555/haskell-api-for-accessing-a-sqlite-database
+
+https://github.com/scotty-web/scotty-starter
+
+-}
+
 module Main where
 
 import Lib
