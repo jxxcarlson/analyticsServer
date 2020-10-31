@@ -4,13 +4,35 @@ module Main where
 
 import Lib
 
+
+import Control.Monad.IO.Class (liftIO) -- liftIO :: IO a -> m a
 import Web.Scotty
 import Network.Wai.Middleware.RequestLogger
 import qualified Data.Text.Lazy as T
+import Network.Wai.Middleware.RequestLogger
+import Network.Wai.Middleware.Cors
+import Event
 
 
-main = scotty 3000 $ do
+main = scotty 8080 $ do
+  middleware corsPolicy
   middleware logStdoutDev
+  -- liftIO $ putStrLn "listening on port 8080"
+
   
-  get "/" $ do
-    html .  T.pack $ "Hello World!"
+  get "/analytics" $ do
+    html .  T.pack $ "Yes, I'm still alive"
+
+  post "/analytics" $ do
+    
+    event <- jsonData :: ActionM Event 
+    liftIO $ putStrLn $ show event
+
+
+
+-- corsPolicy :: Middleware
+corsPolicy = cors (const $ Just policy)
+    where
+      policy = simpleCorsResourcePolicy
+        { corsOrigins  = Nothing
+        , corsRequestHeaders = ["Content-Type"]  }  
