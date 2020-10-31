@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f723867ef79f0aa8c9cad31842a5f102ef45bfcc838f90fcca26c8b3688697cb
+-- hash: 84b08dc13ed6e3146b226650955e35b476f911c6d18afa52b9d90cf43046a940
 
 name:           analyticsServer
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Db
       Event
       Lib
       Model
