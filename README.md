@@ -8,6 +8,10 @@
 
 [Lots of DB stuff](https://github.com/dbushenko/scotty-blog-postgres/blob/master/src/Main.hs)
 
+[Scotty & Postgres](https://github.com/jorgen/scotty-postgres)
+
+[More Scotty & Postgres](https://mcksp.com/rest-api-in-haskell)
+
  $ createdb --username=jxx --password forscotty
  $ dropdb forscotty
 
