@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 85d72bcd3816f3343e7a615b56c4e54c3f2bb953e5baed69f3e9131d31431d6c
+-- hash: 6116da74ea98423fd5d5b416e3e249666a0befbd3cc537481f6eee74c3b37547
 
 name:           analyticsServer
 version:        0.1.0.0
@@ -29,8 +29,6 @@ library
   exposed-modules:
       Entity
       Event
-      Lib
-      Model
   other-modules:
       Paths_analyticsServer
   hs-source-dirs:

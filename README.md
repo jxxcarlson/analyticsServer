@@ -2,11 +2,18 @@
 
 [Important reference: scotty + persistence](https://www.parsonsmatt.org/2015/05/02/scotty_and_persistent.html)
 
+[And also this](http://seanhess.github.io/2015/08/19/practical-haskell-json-api.html)
+
+[Not too bad, but no persistence](https://dev.to/parambirs/how-to-write-a-haskell-web-servicefrom-scratch---part-3-5en6)
+
+[Lots of DB stuff](https://github.com/dbushenko/scotty-blog-postgres/blob/master/src/Main.hs)
 
  $ createdb --username=jxx --password forscotty
  $ dropdb forscotty
 
 make a Postgres user with `createuser -s test -W`
+
+Installation: /usr/local/var/postgres
 
 (warning: this is terrible insecure! Use a more secure means of authentication for your actual application), make a database with createdb perscotty, and modify the connStr to reflect this:
 
