@@ -34,6 +34,10 @@ server conn = do
         newItem <- liftIO (insertEvent conn event)
         json newItem
 
+    get "/analytics" $ do
+      html .  T.pack $ "Yes, I'm still alive"
+
+
 insertEvent :: Connection -> Event -> IO EventEntity
 insertEvent conn event = do
     let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
@@ -50,23 +54,11 @@ main = do
     scotty port $ server conn
 
 
- 
+
 -- main = do
 --   putStrLn $ "\nScotty starting up ... \n"
 --   scotty port $ do
---     middleware corsPolicy
---     middleware logStdoutDev
-    
---     get "/analytics" $ do
---       html .  T.pack $ "Yes, I'm still alive"
 
---     -- get "/events" $ do
---     --     json allUsers
-
---     post "/analytics" $ do
-      
---       event <- jsonData :: ActionM Event 
---       liftIO $ putStrLn $ show event
 
 
 
