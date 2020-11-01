@@ -22,6 +22,7 @@ import Control.Monad.IO.Class (liftIO) -- liftIO :: IO a -> m a
 import qualified Data.Text.Lazy as T
 import Network.Wai.Middleware.RequestLogger
 import Network.Wai.Middleware.Cors
+import Network.HTTP.Types.Method
 
 import Event
 
@@ -32,7 +33,7 @@ main :: IO ()
 main = do
     conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
     scotty port $ do
-       -- middleware corsPolicy
+       middleware corsPolicy
        middleware logStdoutDev
        server conn
 
@@ -63,4 +64,5 @@ corsPolicy = cors (const $ Just policy)
     where
       policy = simpleCorsResourcePolicy
         { corsOrigins  = Nothing
+        , corsMethods = ["POST"]
         , corsRequestHeaders = ["Content-Type"]  }  

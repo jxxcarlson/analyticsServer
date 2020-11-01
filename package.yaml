@@ -27,6 +27,7 @@ dependencies:
 - text
 - wai-extra
 - wai-cors
+- http-types
 
 library:
   source-dirs: src

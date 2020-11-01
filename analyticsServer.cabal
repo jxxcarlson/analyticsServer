@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 70edf88ed83ed968bb7e1e404e50aed0a2b30725faabcae75324c8e590ce6052
+-- hash: e3aa06914df68fbfb66f5a05be92f7b05ac2336664a62277ccc94f0afd5bd50b
 
 name:           analyticsServer
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , http-types
     , postgresql-simple
     , scotty
     , text
@@ -53,6 +54,7 @@ executable analyticsServer-exe
       aeson
     , analyticsServer
     , base >=4.7 && <5
+    , http-types
     , postgresql-simple
     , scotty
     , text
@@ -72,6 +74,7 @@ test-suite analyticsServer-test
       aeson
     , analyticsServer
     , base >=4.7 && <5
+    , http-types
     , postgresql-simple
     , scotty
     , text
