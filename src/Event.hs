@@ -10,10 +10,6 @@ import Database.PostgreSQL.Simple.ToField
 
 import Data.Aeson
 import Control.Applicative
--- import System.Process
--- import Data.List.Split
-
-
 
 
 data Event = Event Int Text Text Double -- id userName eventName eventTime

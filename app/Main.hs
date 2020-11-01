@@ -1,12 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 
-{-
-https://codereview.stackexchange.com/questions/188555/haskell-api-for-accessing-a-sqlite-database
-
-https://github.com/scotty-web/scotty-starter
-
--}
 
 module Main where
 
@@ -35,7 +29,6 @@ main = do
        middleware logStdoutDev
        server conn
 
-      
 
 server :: Connection -> ScottyM()
 server conn = do
@@ -54,7 +47,6 @@ insertEvent conn event = do
     let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
     [Only id] <- query conn insertQuery event
     return $ setId id event
-
 
 
 -- corsPolicy :: Middleware
