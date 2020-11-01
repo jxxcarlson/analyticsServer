@@ -39,8 +39,8 @@ dbFunction = runStderrLoggingT $ withPostgresqlPool connStr 10 $ \pool ->
         flip runSqlPersistMPool pool $ do
             runMigration migrateAll
 
-    -- insert $ EventEntity "jxxcarlson"  "signin" 1234.22
-    -- insert $ EventEntity "mary88"  "signin" 1260.19
+            insert $ EventEntity "jxxcarlson"  "signin" 1234.22
+            insert $ EventEntity "mary88"  "signin" 1260.19
 
-    -- liftIO  $ putStrLn "Done"
+            liftIO  $ putStrLn "Done"
 
