@@ -6,3 +6,5 @@ scripts:
 
   pg-stop: pg_ctl -D /usr/local/var/postgres stop
 
+  curl:  curl -d '{"userName":  "jxxcarlson", "eventName":  "login", "eventTime":  12234.77}' -H 'Content-Type: application/json' http://localhost:8080/analytics
+

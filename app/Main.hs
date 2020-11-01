@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 {-
 https://codereview.stackexchange.com/questions/188555/haskell-api-for-accessing-a-sqlite-database
@@ -10,38 +11,62 @@ https://github.com/scotty-web/scotty-starter
 module Main where
 
 
-import Control.Monad.IO.Class (liftIO) -- liftIO :: IO a -> m a
+
 import Web.Scotty
-import Network.Wai.Middleware.RequestLogger
+import Data.Aeson (FromJSON, ToJSON)
+import Database.PostgreSQL.Simple
+import GHC.Generics
+import Control.Monad.IO.Class (liftIO) -- liftIO :: IO a -> m a
+
+
 import qualified Data.Text.Lazy as T
 import Network.Wai.Middleware.RequestLogger
 import Network.Wai.Middleware.Cors
 
 import Event
-import Entity
 
+
+
+server :: Connection -> ScottyM()
+server conn = do
+    post "/analytics" $ do
+        event <- jsonData :: ActionM Event
+        newItem <- liftIO (insertEvent conn event)
+        json newItem
+
+insertEvent :: Connection -> Event -> IO EventEntity
+insertEvent conn event = do
+    let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
+    [Only id] <- query conn insertQuery event
+    return $ entityFromEvent id event       
 
 port :: Int
 port = 8080
 
+
+main :: IO ()
 main = do
-  putStrLn $ "\nScotty starting up ... \n"
-  Entity.dbStart
-  scotty port $ do
-    middleware corsPolicy
-    middleware logStdoutDev
+    conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
+    scotty port $ server conn
+
+
+ 
+-- main = do
+--   putStrLn $ "\nScotty starting up ... \n"
+--   scotty port $ do
+--     middleware corsPolicy
+--     middleware logStdoutDev
     
-    get "/analytics" $ do
-      html .  T.pack $ "Yes, I'm still alive"
+--     get "/analytics" $ do
+--       html .  T.pack $ "Yes, I'm still alive"
 
-    -- get "/events" $ do
-    --     json allUsers
+--     -- get "/events" $ do
+--     --     json allUsers
 
-    post "/analytics" $ do
+--     post "/analytics" $ do
       
-      event <- jsonData :: ActionM Event 
-      liftIO $ Entity.dbInsert event
-      liftIO $ putStrLn $ show event
+--       event <- jsonData :: ActionM Event 
+--       liftIO $ putStrLn $ show event
 
 
 
