@@ -18,21 +18,22 @@ import Network.Wai.Middleware.RequestLogger
 import Network.Wai.Middleware.Cors
 
 import Event
+import Entity
 
 
-main = scotty 8080 $ do
-  middleware corsPolicy
-  middleware logStdoutDev
-  -- liftIO $ putStrLn "listening on port 8080"
-
-  
-  get "/analytics" $ do
-    html .  T.pack $ "Yes, I'm still alive"
-
-  post "/analytics" $ do
+main = do
+  dbStuff
+  scotty 8080 $ do
+    middleware corsPolicy
+    middleware logStdoutDev
     
-    event <- jsonData :: ActionM Event 
-    liftIO $ putStrLn $ show event
+    get "/analytics" $ do
+      html .  T.pack $ "Yes, I'm still alive"
+
+    post "/analytics" $ do
+      
+      event <- jsonData :: ActionM Event 
+      liftIO $ putStrLn $ show event
 
 
 

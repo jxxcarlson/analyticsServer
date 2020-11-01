@@ -32,3 +32,12 @@ EventEntity
     deriving Show
 |]
 
+dbStuff :: IO ()
+dbStuff = runSqlite ":memory:" $ do
+    runMigration migrateAll
+
+    insert $ EventEntity "jxxcarlson"  "signin" 1234.22
+    insert $ EventEntity "mary88"  "signin" 1260.19
+
+    liftIO  $ putStrLn "Done"
+
