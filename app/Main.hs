@@ -25,19 +25,30 @@ import Network.Wai.Middleware.Cors
 
 import Event
 
+port :: Int
+port = 8080
 
+main :: IO ()
+main = do
+    conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
+    -- scotty port $ middleware corsPolicy
+    -- scotty port $ middleware logStdoutDev
+    scotty port $ do
+       -- middleware corsPolicy
+       middleware logStdoutDev
+       server conn
+
+      
 
 server :: Connection -> ScottyM()
 server conn = do
-    -- middleware corsPolicy
-    -- middleware logStdoutDev
 
     post "/analytics" $ do
         event <- jsonData :: ActionM Event
         newItem <- liftIO (insertEvent conn event)
         json newItem
 
-    get "/analytics" $ do
+    get "/analytics/hello" $ do
       html .  T.pack $ "Yes, I'm still alive"
 
 
@@ -46,26 +57,6 @@ insertEvent conn event = do
     let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
     [Only id] <- query conn insertQuery event
     return $ entityFromEvent id event       
-
-port :: Int
-port = 8080
-
-
-main :: IO ()
-main = do
-    conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
-    scotty port $ server conn
-
-      
-
-      
-
-
-
--- main = do
---   putStrLn $ "\nScotty starting up ... \n"
---   scotty port $ do
-
 
 
 
