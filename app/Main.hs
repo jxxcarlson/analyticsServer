@@ -21,18 +21,26 @@ import Event
 import Entity
 
 
+port :: Int
+port = 8080
+
 main = do
-  dbFunction
-  scotty 8080 $ do
+  putStrLn $ "\nScotty starting up ... \n"
+  Entity.dbStart
+  scotty port $ do
     middleware corsPolicy
     middleware logStdoutDev
     
     get "/analytics" $ do
       html .  T.pack $ "Yes, I'm still alive"
 
+    -- get "/events" $ do
+    --     json allUsers
+
     post "/analytics" $ do
       
       event <- jsonData :: ActionM Event 
+      liftIO $ Entity.dbInsert event
       liftIO $ putStrLn $ show event
 
 
