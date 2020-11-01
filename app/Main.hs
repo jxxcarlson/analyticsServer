@@ -9,8 +9,6 @@ https://github.com/scotty-web/scotty-starter
 
 module Main where
 
-import Lib
-
 
 import Control.Monad.IO.Class (liftIO) -- liftIO :: IO a -> m a
 import Web.Scotty
@@ -18,6 +16,7 @@ import Network.Wai.Middleware.RequestLogger
 import qualified Data.Text.Lazy as T
 import Network.Wai.Middleware.RequestLogger
 import Network.Wai.Middleware.Cors
+
 import Event
 
 

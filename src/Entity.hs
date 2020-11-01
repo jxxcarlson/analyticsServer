@@ -13,20 +13,22 @@
 {-# LANGUAGE TypeFamilies               #-}
 
 
-module Db where
+module Entity where
 
 import           Control.Monad.IO.Class  (liftIO)
 import           Database.Persist
 import           Database.Persist.Sqlite
 import           Database.Persist.TH
 
+import Event
+
 
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
-Event
+EventEntity
     userName String
     eventName String
-    eventTime Double
+    eventTime Double    
     deriving Show
 |]
 
