@@ -10,8 +10,6 @@ https://github.com/scotty-web/scotty-starter
 
 module Main where
 
-
-
 import Web.Scotty
 import Data.Aeson (FromJSON, ToJSON)
 import Database.PostgreSQL.Simple
@@ -51,11 +49,11 @@ server conn = do
       html .  T.pack $ "Yes, I'm still alive"
 
 
-insertEvent :: Connection -> Event -> IO EventEntity
+insertEvent :: Connection -> Event -> IO Event
 insertEvent conn event = do
     let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
     [Only id] <- query conn insertQuery event
-    return $ entityFromEvent id event       
+    return $ setId id event
 
 
 
