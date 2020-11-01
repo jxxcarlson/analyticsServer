@@ -31,8 +31,6 @@ port = 8080
 main :: IO ()
 main = do
     conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
-    -- scotty port $ middleware corsPolicy
-    -- scotty port $ middleware logStdoutDev
     scotty port $ do
        -- middleware corsPolicy
        middleware logStdoutDev
