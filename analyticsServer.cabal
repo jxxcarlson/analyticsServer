@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d92c406a8b27b52fcd4fee52a46ba998e9b3c87afa8cbd68b4d24d001666800e
+-- hash: 85d72bcd3816f3343e7a615b56c4e54c3f2bb953e5baed69f3e9131d31431d6c
 
 name:           analyticsServer
 version:        0.1.0.0
@@ -39,6 +39,7 @@ library
       aeson >=1.4.7.1
     , base >=4.7 && <5
     , bytestring
+    , monad-logger >=0.3.35
     , persistent >=1.3.0
     , persistent-postgresql >=0.3.1
     , persistent-sqlite >=0.3.1
@@ -66,6 +67,7 @@ executable analyticsServer-exe
     , analyticsServer
     , base >=4.7 && <5
     , bytestring
+    , monad-logger >=0.3.35
     , persistent >=1.3.0
     , persistent-postgresql >=0.3.1
     , persistent-sqlite >=0.3.1
@@ -94,6 +96,7 @@ test-suite analyticsServer-test
     , analyticsServer
     , base >=4.7 && <5
     , bytestring
+    , monad-logger >=0.3.35
     , persistent >=1.3.0
     , persistent-postgresql >=0.3.1
     , persistent-sqlite >=0.3.1

@@ -36,6 +36,7 @@ dependencies:
 - transformers
 - aeson >=1.4.7.1
 - wai-cors >=0.2.7
+- monad-logger >= 0.3.35
 
 library:
   source-dirs: src

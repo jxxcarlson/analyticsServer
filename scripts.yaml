@@ -1,0 +1,8 @@
+scripts:
+
+  pg-start: pg_ctl -D /usr/local/var/postgres start
+
+  pg-edit: vim /usr/local/var/postgres/postgresql.conf
+
+  pg-stop: pg_ctl -D /usr/local/var/postgres stop
+

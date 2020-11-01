@@ -1,5 +1,28 @@
 # analyticsServer
 
+[Important reference: scotty + persistence](https://www.parsonsmatt.org/2015/05/02/scotty_and_persistent.html)
+
+
+ $ createdb --username=jxx --password forscotty
+ $ dropdb forscotty
+
+make a Postgres user with `createuser -s test -W`
+
+(warning: this is terrible insecure! Use a more secure means of authentication for your actual application), make a database with createdb perscotty, and modify the connStr to reflect this:
+
+
+
+This formula has created a default database cluster with:
+  initdb --locale=C -E UTF-8 /usr/local/var/postgres
+For more details, read:
+  https://www.postgresql.org/docs/13/app-initdb.html
+
+To have launchd start postgresql now and restart at login:
+  brew services start postgresql
+Or, if you don't want/need a background service you can just run:
+  pg_ctl -D /usr/local/var/postgres start
+
+
 
 [Scotty-web](https://github.com/scotty-web/scotty)
 

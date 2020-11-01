@@ -22,7 +22,7 @@ import Entity
 
 
 main = do
-  dbStuff
+  dbFunction
   scotty 8080 $ do
     middleware corsPolicy
     middleware logStdoutDev
