@@ -9,7 +9,7 @@ The purpose of this server is to log POST requests with JSON data like
 The route for these requests is `/analytics`.  The  server will also accept
 `GET /analytics/hello`, responding with *Yes, I am alive*.
 
-The app is written in Haskel:
+The app is written in Haskell:
 
 ```
 $ stack build
@@ -49,24 +49,7 @@ straightforward approach.  I had also looked at the following:
 - [How to write a Haskell web service (from scratch) - Part 3](https://dev.to/parambirs/how-to-write-a-haskell-web-servicefrom-scratch---part-3-5en6)
   
 - [Scotty & Postgres-Simple](https://github.com/jorgen/scotty-postgres)
-- 
+  
 To understand aeson, [Article by Artyom Kazak](https://artyom.me/aeson) is the best.
-
-## Miscellaneous references to edit
-
-[Scotty-web](https://github.com/scotty-web/scotty)
-
-[Scotty-wiki](https://github.com/scotty-web/scotty/wiki)
-
-[24 Days of Hackage: scotty](https://ocharles.org.uk/blog/posts/2013-12-05-24-days-of-hackage-scotty.html)
-
-https://github.com/eckyputrady/haskell-scotty-realworld-example-app
-
-https://adit.io/
-
-https://www.robinwieruch.de/postgres-sql-macos-setup
-
-https://trycatchchris.co.uk/post/view/Haskell-Persistent-tutorial-via-GitChapter
-
 
 
