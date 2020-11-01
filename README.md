@@ -3,8 +3,11 @@
 The purpose of this server is to log POST requests with JSON data like
 
 ```
-{"userName":  "jxxcarlson", "eventName":  "login", "eventTime":  12234.77}'
+{"id": -1, userName":  "jxxcarlson", "eventName":  "login", "eventTime":  12234.77}'
 ```
+
+Here the value of the id field is a dummy which will be replaced when a record
+is inserted in the database.
 
 The route for these requests is `/analytics`.  The  server will also accept
 `GET /analytics/hello`, responding with *Yes, I am alive*.
@@ -19,7 +22,7 @@ $ stack run
 ## Testing the app
 
 ```
-  $ curl -d '{"userName":  "jxxcarlson", "eventName":  "login", "eventTime":  12234.77}' -H 'Content-Type: application/json' http://localhost:8080/analytics
+  $  curl -d '{"id": -1, "userName":  "jxxcarlson", "eventName":  "login", "eventTime":  12234.77}' -H 'Content-Type: application/json' http://localhost:8080/analytics
 ```
 
 
