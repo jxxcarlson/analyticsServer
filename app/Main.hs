@@ -29,6 +29,9 @@ import Event
 
 server :: Connection -> ScottyM()
 server conn = do
+    -- middleware corsPolicy
+    -- middleware logStdoutDev
+
     post "/analytics" $ do
         event <- jsonData :: ActionM Event
         newItem <- liftIO (insertEvent conn event)
@@ -52,6 +55,10 @@ main :: IO ()
 main = do
     conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
     scotty port $ server conn
+
+      
+
+      
 
 
 
