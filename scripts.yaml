@@ -8,5 +8,12 @@ scripts:
 
   cloc: cloc --by-file src app
 
-  hello: curl  http://localhost:8080/analytics/hello
+  hello: curl  http://localhost:3001/analytics/hello
 
+  ssh:  ssh root@161.35.125.40
+
+  alive: sudo lsof -n -i :3001
+
+  nginx-alive: curl http://127.0.0.1:8080
+
+  nginx-edit: vim /usr/local/etc/nginx/nginx.conf

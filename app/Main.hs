@@ -19,7 +19,7 @@ import Network.HTTP.Types.Method
 import Event
 
 port :: Int
-port = 8080
+port = 3001
 
 main :: IO ()
 main = do
