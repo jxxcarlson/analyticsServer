@@ -38,6 +38,11 @@ server conn = do
         newItem <- liftIO (insertEvent conn event)
         json newItem
 
+    get "/analytics" $ do
+        events <- liftIO (query_ conn "select * from events" :: IO [Event])
+        -- eventItems <- liftIO (mapM (setArray conn) events)
+        json events
+
     get "/analytics/hello" $ do
       html .  T.pack $ "Yes, I'm still alive\n"
 
@@ -47,6 +52,7 @@ insertEvent conn event = do
     let insertQuery = "insert into events(username, eventname, eventtime) values(?, ?, ?) returning id;"
     [Only id] <- query conn insertQuery event
     return $ setId id event
+
 
 
 -- corsPolicy :: Middleware
