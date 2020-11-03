@@ -39,7 +39,7 @@ server conn = do
         json newItem
 
     get "/analytics/hello" $ do
-      html .  T.pack $ "Yes, I'm still alive"
+      html .  T.pack $ "Yes, I'm still alive\n"
 
 
 insertEvent :: Connection -> Event -> IO Event
