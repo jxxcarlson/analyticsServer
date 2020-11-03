@@ -18,38 +18,38 @@ data Event = Event Int Text Text Double -- id userName eventName eventTime
 id_ :: Event -> Int
 id_ (Event k _ _ _ ) = k
 
-userName_ :: Event -> Text
-userName_ (Event _ n _ _ ) = n
+username_ :: Event -> Text
+username_ (Event _ n _ _ ) = n
 
-eventName_ :: Event -> Text
-eventName_ (Event _ _ e _) = e
+eventname_ :: Event -> Text
+eventname_ (Event _ _ e _) = e
 
-eventTime_ :: Event -> Double
-eventTime_ (Event _ _ _ t) = t
+eventtime_ :: Event -> Double
+eventtime_ (Event _ _ _ t) = t
 
 setId :: Int -> Event -> Event
-setId j (Event i userName eventName eventTime) = (Event j userName eventName eventTime)
+setId j (Event i username eventname eventtime) = (Event j username eventname eventtime)
 
 -- Tell Aeson how to create an Event object from JSON string.
 instance FromJSON Event where
      parseJSON (Object v) = Event <$>
                             v .: "id" <*>
-                            v .: "userName" <*> 
-                            v .:  "eventName" <*>
-                            v .: "eventTime"
+                            v .: "username" <*> 
+                            v .:  "eventname" <*>
+                            v .: "eventtime"
 
 -- Tell Aeson how to convert a Event object to a JSON string.
 instance ToJSON Event where
-     toJSON (Event id userName eventName eventTime) =
+     toJSON (Event id username eventname eventtime) =
          object [ 
                  "id" .= id,
-                 "userName" .= userName,
-                 "eventName" .= eventName,
-                 "eventTime" .= eventTime]
+                 "username" .= username,
+                 "eventname" .= eventname,
+                 "eventtime" .= eventtime]
 
 instance FromRow Event where
     fromRow = Event <$> field <*> field <*> field <*> field
 
 instance ToRow Event where
-    toRow i = [toField $ userName_ i, toField $ eventName_ i, toField $ eventTime_ i]
+    toRow i = [toField $ username_ i, toField $ eventname_ i, toField $ eventtime_ i]
 

@@ -23,7 +23,7 @@ port = 3001
 
 main :: IO ()
 main = do
-    conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='forscotty' password='jxx'")
+    conn <- connectPostgreSQL ("host='127.0.0.1' user='jxx' dbname='postgres' password='jxx'")
     scotty port $ do
        middleware corsPolicy
        middleware logStdoutDev
@@ -44,7 +44,7 @@ server conn = do
 
 insertEvent :: Connection -> Event -> IO Event
 insertEvent conn event = do
-    let insertQuery = "insert into events (userName, eventName, eventTime) values (?, ?, ?) returning id"
+    let insertQuery = "insert into events(username, eventname, eventtime) values(?, ?, ?) returning id;"
     [Only id] <- query conn insertQuery event
     return $ setId id event
 
