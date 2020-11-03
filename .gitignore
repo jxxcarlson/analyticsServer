@@ -1,2 +1,8 @@
 .stack-work/
 scratch.txt
+analyticsServer
+app/Main
+app/Main.hi
+app/Main.o
+app/nohup.out
+nohup.out

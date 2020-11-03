@@ -16,6 +16,8 @@ scripts:
 
   alive: sudo lsof -n -i :3001
 
+  start-nh: nohup ./analyticsServer &
+
   nginx-alive: curl http://127.0.0.1:8080/a/analytics/hello
 
   nginx-edit: vim /usr/local/etc/nginx/nginx.conf
