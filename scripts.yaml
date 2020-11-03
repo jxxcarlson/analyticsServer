@@ -10,6 +10,8 @@ scripts:
 
   hello: curl  http://localhost:3001/analytics/hello
 
+  hello-remote:  curl http://shoobox.io/analytics/hello
+
   ssh:  ssh root@161.35.125.40
 
   alive: sudo lsof -n -i :3001
