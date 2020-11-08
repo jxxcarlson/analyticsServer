@@ -40,7 +40,6 @@ server conn = do
 
     get "/analytics" $ do
         events <- liftIO (query_ conn "select * from events" :: IO [Event])
-        -- eventItems <- liftIO (mapM (setArray conn) events)
         json events
 
     get "/analytics/hello" $ do
