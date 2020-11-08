@@ -49,7 +49,7 @@ server conn = do
 
 insertEvent :: Connection -> Event -> IO Event
 insertEvent conn event = do
-    let insertQuery = "insert into events(username, eventname, eventtime) values(?, ?, ?) returning id;"
+    let insertQuery = "insert into events(username, session, eventname, eventtime) values(?, ?, ?, ?) returning id;"
     [Only id] <- query conn insertQuery event
     return $ setId id event
 

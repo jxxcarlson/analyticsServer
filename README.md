@@ -23,14 +23,18 @@ $ stack run
 
 ```
   curl -d '{"id": -1, "username":  "jxxcarlson", "eventname":  "login", "eventtime":  12234.77}' -H 'Content-Type: application/json' http://127.0.0.1:3001/analytics
+
+  curl http://127.0.0.1:3001/analytics
   
   curl -d '{"id": -1, "userName":  "jxxcarlson", "eventname":  "login", "eventtime":  30001.77}' -H 'Content-Type: application/json' http://localhost:8080/analytics'
 ```
 
 ```
+su - jxx
+psql
 drop table events;
-create table events (id serial primary key, username text, eventname text, eventtime float);
-insert into events(username, eventname, eventtime) values('ichabod', 'signin', 1234.65);
+create table events (id serial primary key, username text, session text, eventname text, eventtime float);
+insert into events(username, session, eventname, eventtime) values('ichabod', 'yh7nn3', 'signin', 1234.65);
 select * from events;
 ```
 
